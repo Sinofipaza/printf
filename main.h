@@ -1,40 +1,33 @@
 #ifndef MAIN_H
 #define MAIN_H
-#define BUFSIZE 1024
 #include <stdarg.h>
 
+int _putchar(char c);
+int print_int(va_list arg);
+int print_unsigned(va_list arg);
 int _printf(const char *format, ...);
-char *(*get_spec_func(char s))(va_list);
-char *found_none(char c);
-int alloc_buffer(char *hold, int hlen, char *buffer, int size, double *total);
-int _strlen(char *s);
-char *chartos(char c);
-char *char_find(va_list c);
-char *string_find(va_list s);
-char *percent_find(void);
-char *int_find(va_list npoint);
-char *unsigned_find(va_list unsign);
-void _puts(char *buffer, int size);
-char *_memcpy(char *dest, char *src, unsigned int n, unsigned int bufferlen);
-char *rev_find(va_list s);
-char *rot13_find(va_list s);
-char *binary_find(va_list n);
-char *octal_find(va_list n);
-char *hex_find(va_list n);
-char *HEX_find(va_list n);
-char *address_find(va_list n);
-char *rev_string(char *a, int n);
+int print_char(va_list arg);
+int print_str(va_list arg);
+int print_percent(void);
+void print_binary(unsigned int n, unsigned int *printed);
+int print_unsignedToBinary(va_list arg);
+int print_oct(va_list arg);
+int print_unsignedIntToHex(unsigned int num, char _case);
+int print_hex_base(va_list arg, char _case);
+int print_hex(va_list arg);
+int print_HEX(va_list arg);
+int print_STR(va_list arg);
 
 /**
- * struct spec_types - Struct gets function of specifier
- * @spec: specifier
- * @f: The function
+ * struct identifierStruct - structure definition of printTypeStruct
+ * @indentifier: type
+ * @printer: function that will print
  */
 
-typedef struct spec_types
+typedef struct identifierStruct
 {
-	char *spec;
-	char *(*f)();
-} s_types;
+char *indentifier;
+int (*printer)(va_list);
+} identifierStruct;
 
 #endif
